@@ -1,0 +1,6 @@
+[submodule "swarm_runtime"]
+	path = include/swarm_runtime
+	url = https://github.com/SwarmArch/runtime.git
+[submodule "clang"]
+	path = tools/clang
+	url = https://github.com/SwarmArch/Swarm-Clang.git
