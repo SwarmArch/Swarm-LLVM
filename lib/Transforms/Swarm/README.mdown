@@ -1,0 +1,25 @@
+This directory holds all transformations/optimizations
+newly implemented for SCC (T4).
+
+The table below summarizes how the main files in this directory
+map to concepts described in the T4 paper.
+The order of rows in this table matches the order in which transformations
+are applied to application code when the compiler runs.
+
+| File                                   | T4 concept                         |
+|----------------------------------------|------------------------------------|
+| InsertHeartbeats.cpp                   | Heartbeats                         |
+| CreateParallelizableCopy.cpp           | CPS conversion                     |
+| Bundling.cpp                           | Privatization, bundling            |
+| Fractalizer.cpp & LoopIterDetacher.cpp | Task delineation, order, spawn     |
+| LoopCoarsen.cpp                        | Loop coarsening                    |
+| LoopExpansion.cpp                      | Loop expansion (spawner trees)     |
+| SpatialHints.cpp                       | Spatial-hint generation            |
+| LowerToSwarm.cpp & SwarmABI.cpp        | Task lifting                       |
+
+See the individual files to learn about the implementation of each transformation pass.
+
+The order in which these passes run, interleaved with other pre-existing LLVM
+simplification passes, is determined by
+`PassManagerBuilder::populateModulePassManager()`
+in `lib/Transforms/IPO/PassManagerBuilder.cpp`
